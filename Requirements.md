@@ -34,3 +34,6 @@
 - [ ] Per-axis centre finding
 - [ ] Measure taper
 - [ ] Hole pattern calculator
+
+## Functions for Surface Grinder Mode
+¯\_(ツ)_/¯
