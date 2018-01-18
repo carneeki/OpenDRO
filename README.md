@@ -10,9 +10,8 @@ reads, quickly. They send the number of counts of the encoder to a master
 controller (likely an ATmega328 or similar) when polled over an I2C bus.
 
 ## TODO
-TODO List:
-
-- [ ] Confirm the axis_decoders work (and do NOT skip counts when moved)
+- [x] Write the axis_decoder
+- [ ] Confirm the axis_decoders work (and does NOT skip counts when moved)
 - [ ] Write a master
 -   [ ] Buttons and functions to the master
 - [ ] Design a board schematic
