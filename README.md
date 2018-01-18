@@ -12,6 +12,7 @@ controller (likely an ATmega328 or similar) when polled over an I2C bus.
 ## TODO
 - [x] Write the axis_decoder
 - [ ] Confirm the axis_decoders work (and does NOT skip counts when moved)
+  - [ ] If lost counts, attempt 16MHz or 20MHz operation, and try reading `PORTB` bits rather than `digitalRead()`
 - [ ] Write a master
   - [ ] Buttons and functions to the master
 - [ ] Design a board schematic
