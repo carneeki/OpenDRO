@@ -1,0 +1,20 @@
+; 3mm thick alu sheet 140 x 82 x 3
+; 5.5mm drill creates drill holes for mounting too saddle
+; as well as chain drilling the 6mm slot
+; tools:
+;  o 1002 - 6.0mm slot drill
+; spindle speed 3500
+; feed (horiz)  160mm
+M3 S3500
+
+G0 Y102 Y-8.5 Z5   ; go to start of slot
+G0 Z2
+G1 Z-6 F50         ; plunge
+G1 X132 F160       ; end of slot
+G0 Z5              ; retract
+
+G0 Y-64.50 Z5      ; end of slot
+G0 Z2
+G1 Z-6 F50         ; plunge
+G1 X102 F160       ; start of slot
+G0 Z5              ; retract

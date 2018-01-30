@@ -1,0 +1,82 @@
+; 3mm thick alu sheet 140 x 82 x 3
+; 5.5mm drill creates drill holes for mounting too saddle
+; as well as chain drilling for the 6mm slot
+; tools:
+;  o 1001 - 5.5mm jobber drill
+; spindle S4400 RPM
+; feed F350
+M3 S4400
+G0 Z50
+
+G0 X8.00 Y-7       ; top left hole
+G0 Z3
+G1 Z-4 F350
+G0 Z50
+
+G0 X102            ; slot start
+G0 Z3
+G1 Z-4
+G0 Z3
+
+G0 X107
+G1 Z-4
+G0 Z3
+
+G0 X112
+G1 Z-4
+G0 Z3
+
+G0 X117
+G1 Z-4
+G0 Z3
+
+G0 X122
+G1 Z-4
+G0 Z3
+
+G0 X127
+G1 Z-4
+G0 Z3
+
+G0 X132            ; slot end
+G1 Z-4
+G0 Z50
+
+G0 Y-75            ; slot start
+G0 Z3
+G1 Z-4
+G0 Z3
+
+G0 X127
+G1 Z-4
+G0 Z3
+
+G0 X122
+G1 Z-4
+G0 Z3
+
+G0 X117
+G1 Z-4
+G0 Z3
+
+G0 X112
+G1 Z-4
+G0 Z3
+
+G0 X107
+G1 Z-4
+G0 Z3
+
+G0 X102            ; slot end
+G1 Z-4
+G0 Z50
+
+G0 X8              ; bottom left hole
+G0 Z3
+G1 Z-4
+G0 Z50
+
+G0 Z100            ; park cutter
+G0 X200 Y0         ;
+M5                 ; stop spindle
+%
