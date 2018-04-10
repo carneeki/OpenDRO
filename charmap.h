@@ -23,44 +23,47 @@
 #define SEG_G     0x01 // 0000 0001
 #define SEG_EMPTY 0x00 // 0000 0000
 
+// all
+char cAll = 0xFF;
+
 // numbers
 char c0 = SEG_A|SEG_B|SEG_C|SEG_D|SEG_E|SEG_F;
-char c1 = SEG_B|SEG_C;
-char c2 = SEG_A|SEG_B|SEG_G|SEG_E|SEG_D;
-char c3 = SEG_A|SEG_B|SEG_G|SEG_C|SEG_D;
-char c4 = SEG_F|SEG_G|SEG_B|SEG_C;
-char c5 = SEG_A|SEG_F|SEG_G|SEG_C|SEG_D;
-char c6 = SEG_A|SEG_F|SEG_E|SEG_G|SEG_C|SEG_D;
+char c1 =       SEG_B|SEG_C;
+char c2 = SEG_A|SEG_B|      SEG_D|SEG_E|      SEG_G;
+char c3 = SEG_A|SEG_B|SEG_C|SEG_D|SEG_G;
+char c4 =       SEG_B|SEG_C|            SEG_F|SEG_G;
+char c5 = SEG_A|      SEG_C|SEG_D|      SEG_F|SEG_G;
+char c6 = SEG_A|      SEG_C|SEG_D|SEG_E|SEG_F|SEG_G;
 char c7 = SEG_A|SEG_B|SEG_C;
 char c8 = SEG_A|SEG_B|SEG_C|SEG_D|SEG_E|SEG_F|SEG_G;
-char c9 = SEG_A|SEG_F|SEG_G|SEG_B|SEG_C|SEG_D;
+char c9 = SEG_A|SEG_B|SEG_C|SEG_D|      SEG_F|SEG_G;
 
 // letters
-char cA = SEG_E|SEG_F|SEG_A|SEG_B|SEG_C|SEG_G;
-char cb = SEG_G|SEG_E|SEG_D|SEG_C|SEG_B;
-char cC = SEG_A|SEG_F|SEG_E|SEG_D;
-char cc = SEG_G|SEG_E|SEG_D;
-char cd = SEG_G|SEG_E|SEG_D|SEG_C|SEG_B;
-char cE = SEG_A|SEG_F|SEG_G|SEG_E|SEG_D;
-char cF = SEG_A|SEG_F|SEG_G|SEG_E;
-char cG = SEG_A|SEG_F|SEG_G|SEG_B|SEG_C|SEG_D;
-char cH = SEG_F|SEG_E|SEG_G|SEG_B|SEG_C;
-char cI = SEG_F|SEG_E;
-char ci = SEG_E;
-char cJ = SEG_B|SEG_C|SEG_D;
-char cj = SEG_C|SEG_D;
-char cL = SEG_F|SEG_E|SEG_D;
-char cn = SEG_E|SEG_G|SEG_C;
-char co = SEG_G|SEG_E|SEG_D|SEG_C;
-char cP = SEG_F|SEG_E|SEG_A|SEG_B|SEG_G;
-char cq = SEG_A|SEG_F|SEG_G|SEG_B|SEG_C;
-char cr = SEG_E|SEG_G;
-char cS = SEG_A|SEG_F|SEG_G|SEG_C|SEG_D;
-char cU = SEG_F|SEG_E|SEG_D|SEG_C|SEG_B;
-char cu = SEG_E|SEG_D|SEG_C;
-char cX = SEG_F|SEG_E|SEG_G|SEG_B|SEG_C;
-char cY = SEG_F|SEG_G|SEG_B|SEG_C|SEG_D;
-char cZ = SEG_A|SEG_B|SEG_G|SEG_E|SEG_D;
+char cA = SEG_A|SEG_B|SEG_C|SEG_E|SEG_F|SEG_G;
+char cb =             SEG_C|SEG_D|SEG_E|SEG_F|SEG_G;
+char cC = SEG_A|            SEG_D|SEG_E|SEG_F;
+char cc =                   SEG_D|SEG_E|      SEG_G;
+char cd = SEG_B|      SEG_C|SEG_D|SEG_E|      SEG_G;
+char cE = SEG_A|            SEG_D|SEG_E|SEG_F|SEG_G;
+char cF = SEG_A|                  SEG_E|SEG_F|SEG_G;
+char cG = SEG_A|SEG_B|SEG_C|SEG_D|      SEG_F|SEG_G;
+char cH = SEG_B|SEG_C|            SEG_E|SEG_F|SEG_G;
+char cI =       SEG_B|SEG_C;
+char ci =             SEG_C;
+char cJ =       SEG_B|SEG_C|SEG_D;
+char cj =             SEG_C|SEG_D;
+char cL =                   SEG_D|SEG_E|SEG_F;
+char cn =             SEG_C|SEG_E|            SEG_G;
+char co =             SEG_C|SEG_D|SEG_E|      SEG_G;
+char cP = SEG_A|SEG_B|            SEG_E|SEG_F|SEG_G;
+char cq = SEG_A|SEG_B|SEG_C|            SEG_F|SEG_G;
+char cr =                         SEG_E|      SEG_G;
+char cS = SEG_A|      SEG_C|SEG_D|      SEG_F|SEG_G;
+char cU =       SEG_B|SEG_C|SEG_D|SEG_E|SEG_F;
+char cu =             SEG_C|SEG_D|SEG_E;
+char cX =       SEG_B|SEG_C|      SEG_E|SEG_F|SEG_G;
+char cY =       SEG_B|SEG_C|SEG_D|      SEG_F|SEG_G;
+char cZ = SEG_A|SEG_B|SEG_D|SEG_E|SEG_G;
 
 // characters
 char cTack = SEG_G;

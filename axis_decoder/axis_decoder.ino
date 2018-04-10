@@ -26,6 +26,7 @@ const unsigned int resetDelta = 10000U; // counts between encoder resets
 bool          dir        = false; // true = direction increasing
 volatile long count      = 0L;    // reported encoder count
 volatile long lastRcount = 0L;    // encoder position at last reset
+volatile bool isReset    = false; // determine if reset has happened before
 volatile bool stateSigA  = false; // signal A value
 volatile bool stateSigB  = false; // signal B value
 volatile bool lastSigA   = false; // previous signal A value
@@ -62,6 +63,8 @@ void sendCount()
 void tickA()
 {
   stateSigA = digitalRead(PB5);
+  if(digitalRead(PB4);)
+    return;
 
   if(stateSigB ^ lastSigA)
   {
@@ -81,6 +84,8 @@ void tickA()
 void tickB()
 {
   stateSigB = digitalRead(PB3);
+  if(digitalRead(PB4))
+    return;
 
   if(stateSigA ^ lastSigB)
   {
@@ -96,12 +101,24 @@ void tickB()
   lastSigB = stateSigB;
 }
 
-// called on encoder tick R
+/* called on encoder tick R
+ * this method catches missed ticks if encoder is moving too fast.
+ * Generally it clobbers count with the lastCount +/- resetDelta
+ * except if this is the first time tickR is called.
+ */
 void tickR()
 {
-  if(count && dir)
+  // if this is the first time tickR() is called, don't clobber
+  if(!isReset)
+  {
+    isReset = true;
+    lastRcount = count;
+    return;
+  }
+
+  if(dir)
     count = lastRcount + resetDelta;
-  if(count && !dir)
+  else
     count = lastRcount - resetDelta;
 
   lastRcount = count;
