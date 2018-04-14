@@ -2,7 +2,6 @@
 #define OPENDRO_H
 #include <avr/io.h>
 
-void portTick();
-volatile long* axisTick(byte, volatile long *);
+int8_t axisTick(byte, volatile long *);
 
 #endif
