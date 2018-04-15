@@ -5,22 +5,33 @@ OpenDRO is a project to make a DRO with Arduino(s) for machine tools, such as
 lathes and milling machines.
 
 ## Layout
-The general architecture is to use 3 (or more) ATtiny85 units to do low level
-reads, quickly. They send the number of counts of the encoder to a master
-controller (likely an ATmega328 or similar) when polled over an I2C bus.
-
-## TODO
-- [x] Write the axis_decoder
-- [ ] Confirm the axis_decoders work (and does NOT skip counts when moved)
-  - [ ] If lost counts, attempt 16MHz or 20MHz operation, and try reading `PORTB` bits rather than `digitalRead()`
-- [ ] Write a master
-  - [ ] Buttons and functions to the master
-- [ ] Design a board schematic
-- [ ] Design a board layout
-- [ ] Design an enclosure
-- [ ] Construct the first unit
-  - [ ] Fab the first PCB
-  - [ ] Order components
-  - [ ] Assemble first PCB
-  - [ ] Insert board into enclosure
-  - [ ] Test out the wazoo
+Several concepts currently exist, with only one design being actively persued
+owing to hardware, time, interest, and so on. These designs are:
+- [x] "Basic" - Single board with ATmega328. This is the active design.
+  - [ ] 4 axes (these labels can be renamed on your enclosure! ;) ). Other axes
+        likely work. I don't have everything to build up and test them yet. `X`
+        axis will happen next, followed by `W` and `C` in that order.
+    - [x] `Z` axis
+    - [ ] `X` axis
+    - [ ] `W` axis (tailstock)
+    - [ ] `C` axis (rotation on spindle)
+  - [ ] Unit selection
+  - [ ] Zero each axis independently
+    - [x] `Z` axis
+    - [ ] `X` axis
+    - [ ] `W` axis
+    - [ ] `C` axis
+- [ ] "Advanced" - Single board with ATmega2560 (not actively persued right now)
+  - [ ] 4 axes
+    - [x] `Z` axis
+    - [ ] `X` axis
+    - [ ] `W` axis (tailstock)
+    - [ ] `C` axis (rotation on spindle)
+  - [ ] Keypad for tool offset entry, tool call and other data entry.
+- [ ] "Distributed" - Multiple boards, ATmega2560 main board, a daughterboard
+      per axis containing a separate ATTiny85 for pulse counting and report back
+      through I2C or SPI to main board (not actively persued right now).
+    - [ ] Axis decoder code has been written, and is somewhere early in the git
+          archives. This approach is not actively persued, the MCUs appear to be
+          capable of handling the high interrupt speeds for human movements.
+  - [ ] Keypad for tool offset entry, tool call and other data entry.
