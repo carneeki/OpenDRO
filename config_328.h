@@ -20,4 +20,4 @@
 #define PIN_LED_CS     8 //PB0
 
 // units button
-#define PIN_UNITS    PB0 // D8
+#define PIN_UNITS     11 // PB3
