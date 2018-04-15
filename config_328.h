@@ -15,9 +15,9 @@
 #define PIN_W_RESET PC5  // A5
 
 // MAX7219 output pins
-#define PIN_LED_DATA 10 //PB4 // D12
-#define PIN_LED_CLK   9 //PB3 // D11
-#define PIN_LED_CS    8 //PB2 // D10
+#define PIN_LED_DATA  10 //PB2
+#define PIN_LED_CLK    9 //PB1
+#define PIN_LED_CS     8 //PB0
 
 // units button
 #define PIN_UNITS    PB0 // D8
