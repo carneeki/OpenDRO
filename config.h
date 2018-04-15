@@ -9,7 +9,7 @@
 #endif
 
 #define DISPLAY_COUNT 8  // how many display boards?
-#define DISPLAY_INTENSITY 1
+#define DISPLAY_INTENSITY 4
 
 #define IDX_Z_DELTA 10000 // number of pulses between index pulses
 #define TICK_Z_MM 0.005   // distance between pulses
