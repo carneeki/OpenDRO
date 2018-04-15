@@ -8,7 +8,7 @@ volatile long int count_z;
 volatile long int count_x;
 volatile long int count_w;
 volatile long int count_c;
-volatile bool lamp = true;
+volatile bool lamp = false;
 
 volatile byte prevPort = 0;   // previous axis port state
 volatile byte curPort = PIND; // current axis port state
