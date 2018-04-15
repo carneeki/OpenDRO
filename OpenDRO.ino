@@ -43,12 +43,6 @@ void setup()
     leds.clearDisplay(i);
   }
 
-  pinMode(A5, OUTPUT);    // TODO: send power to encoder for bench testing
-  digitalWrite(A5, HIGH); // TODO: in final circuit REMOVEME
-
-  pinMode(13, OUTPUT);
-  digitalWrite(13, LOW);
-
   cli();             // clear interrupts during setup
   DDRD = 0b00000000; // PD0..7 (PCI2) as inputs
   DDRC = 0b11111110; // PC0 as input
@@ -66,7 +60,6 @@ void setup()
 
 void loop()
 {
-  digitalWrite(13, lamp);
   writeDisplay(0, &count_z, TICK_Z_MM);
 
   delay(20); // don't update too frequently or
@@ -78,16 +71,14 @@ void writeDisplay(uint8_t display, volatile long int* count, double ticks)
   char buf[10];
   double dist;
   dp = 0;
-
   dist = (*count * ticks);
-
   if (!units)
     dist = dist/25.4;
 
   leds.clearDisplay(display);
 
-  dtostrf(dist, 9, 4, buf);
-  snprintf(buf, 9, "%9s", buf);
+  dtostrf(dist, 9, 4, buf);     // TODO: make me better
+  snprintf(buf, 9, "%9s", buf); // this approach takes up substantial pgmmem
 
   // NOTE: MUST be of the form
   // [-]ddd.ddd
