@@ -14,7 +14,6 @@ volatile byte prevPort = 0;   // previous axis port state
 volatile byte curPort = PIND; // current axis port state
 
 bool units = true; // display units in mm (false = inches)
-char buf[9];
 byte dp = 0;
 
 LedControl leds = LedControl(PIN_LED_DATA, PIN_LED_CLK, PIN_LED_CS);
@@ -67,18 +66,44 @@ void setup()
 
 void loop()
 {
-  leds.clearDisplay(0);
   digitalWrite(13, lamp);
-
-  snprintf(buf, 9, "% 8li", count_z);
-
-  for (int i = 0; i < 8; i++)
-  {
-    leds.setChar(0, 7-i, buf[i], false);
-  }
+  writeDisplay(0, &count_z, TICK_Z_MM);
 
   delay(20); // don't update too frequently or
              // people will spaz out on tiny changes
+}
+
+void writeDisplay(uint8_t display, volatile long int* count, double ticks)
+{
+  char buf[10];
+  double dist;
+  dp = 0;
+
+  dist = (*count * ticks);
+
+  if (!units)
+    dist = dist/25.4;
+
+  leds.clearDisplay(display);
+
+  dtostrf(dist, 9, 4, buf);
+  snprintf(buf, 9, "%9s", buf);
+
+  // NOTE: MUST be of the form
+  // [-]ddd.ddd
+  for (int i = 0; i <= 8; i++)
+  {
+    if (buf[i] == '.')
+      continue;
+
+    if (i < 8 && buf[i + 1] == '.')
+    {
+      leds.setChar(display, 7 - i + dp, (byte)buf[i], true);
+      dp = 1;
+    }
+    else
+      leds.setChar(display, 7 - i + dp, (byte)buf[i], false);
+  }
 }
 
 // port D got a tick
@@ -105,7 +130,8 @@ ISR(PCINT2_vect)
 
 ISR(PCINT1_vect)
 {
-  if((PINC & 0x02) == 0x02) count_z = 0;
+  if ((PINC & 0x02) == 0x02)
+    count_z = 0;
 }
 
 int8_t axisTick(uint8_t shift, volatile long int *count)
