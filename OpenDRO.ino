@@ -4,7 +4,7 @@
 
 #define NOP __asm__("nop\n\t");
 
-volatile int count_z;
+volatile long int count_z;
 volatile long int count_x;
 volatile long int count_w;
 volatile long int count_c;
@@ -55,10 +55,11 @@ void setup()
   DDRC = 0b11111110; // PC0 as input
 
   PORTD |= 0b11111111; // PD0..7 pull-up resistor
-  PORTC |= 0b11111111; // PC0 pull-up resistor
+  PORTC |= 0b11111111; // PC0..7 pull-up resistor
 
   PCICR |= (1 << PCIE2) | (1 << PCIE1) | (1 << PCIE0);
   PCMSK2 = 0b11111111; // PD0..7 (PCI2) pin enable
+  PCMSK1 = 0b00000010; // PC1 pin enable
   sei();               // re-enable interrupts
 
   prevPort = PIND;
@@ -66,23 +67,18 @@ void setup()
 
 void loop()
 {
-  // DEBUG START
-  // lamp = (count_z == 0) ? false:true;
+  leds.clearDisplay(0);
   digitalWrite(13, lamp);
 
-  leds.clearDisplay(0);
-  snprintf(buf, 9, "%08i", count_z);
+  snprintf(buf, 9, "% 8li", count_z);
 
   for (int i = 0; i < 8; i++)
-    leds.setChar(0, 7 - i, buf[i], false);
+  {
+    leds.setChar(0, 7-i, buf[i], false);
+  }
 
-  // DEBUG END
-
-  // dtostrf(count_z, 9, 3, buf);   // TODO: I take up ~2k0 of program space
-  // snprintf(buf, 10, "%8s", buf); // TODO: I take up ~1k6 of program space
-
-  delay(5); // don't update too frequently or
-            // people will spaz out on tiny changes
+  delay(20); // don't update too frequently or
+             // people will spaz out on tiny changes
 }
 
 // port D got a tick
@@ -107,7 +103,12 @@ ISR(PCINT2_vect)
       prevPort = PIND;
 }
 
-int8_t axisTick(uint8_t shift, volatile int *count)
+ISR(PCINT1_vect)
+{
+  if((PINC & 0x02) == 0x02) count_z = 0;
+}
+
+int8_t axisTick(uint8_t shift, volatile long int *count)
 {
   uint8_t prevAxis = ((prevPort >> shift) & 0x03);
   uint8_t curAxis = ((PIND >> shift) & 0x03);
