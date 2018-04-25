@@ -107,15 +107,15 @@ ISR(PCINT2_vect)
       prevPort = PIND;
 
   if (delta == 0x04 || delta == 0x08) // X axis
-    if (axisTick(0x0C, &count_z) != 0)
+    if (axisTick(0x0C, &count_x) != 0)
       prevPort = PIND;
 
   if (delta == 0x10 || delta == 0x20) // W axis
-    if (axisTick(0x30, &count_z) != 0)
+    if (axisTick(0x30, &count_w) != 0)
       prevPort = PIND;
 
   if (delta == 0x40 || delta == 0x80) // C axis
-    if (axisTick(0xC0, &count_z) != 0)
+    if (axisTick(0xC0, &count_c) != 0)
       prevPort = PIND;
 }
 
