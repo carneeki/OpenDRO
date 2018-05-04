@@ -93,11 +93,12 @@ void loop()
     writeDisplay(0, &count_z, TICK_Z_MM);
   }
 
+  // TODO: debounce me
   if(!digitalRead(PIN_Z_RESET)) count_z = 0;
   if(!digitalRead(PIN_X_RESET)) count_x = 0;
   if(!digitalRead(PIN_W_RESET)) count_w = 0;
   if(!digitalRead(PIN_C_RESET)) count_c = 0;
-  if(!digitalRead(PIN_UNITS)) units = !units;
+  if(!digitalRead(PIN_UNITS)) units = !units; // FIXME: I don't work
 }
 
 void writeDisplay(uint8_t display, volatile long int* count, double ticks)
