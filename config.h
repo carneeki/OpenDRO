@@ -8,8 +8,12 @@
 #include "config_2560.h"
 #endif
 
+#define LOOP_DELAY 10 // number of millis between loops
+#define DEBOUNCE 100   // number of millis between debounce checks
+#define BUTTON_COUNT 5
+
 #define DISPLAY_COUNT 8  // how many display boards?
-#define DISPLAY_INTENSITY 4
+#define DISPLAY_INTENSITY 5
 
 #define IDX_Z_DELTA 10000 // number of pulses between index pulses
 #define TICK_Z_MM 0.005   // distance between pulses
