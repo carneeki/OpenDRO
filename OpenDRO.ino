@@ -1,6 +1,8 @@
 #include "config.h"
-#include "libraries/LedControl/src/LedControl.cpp"
+#include "libraries/Bounce2/Bounce2.h"
+#include "libraries/Bounce2/Bounce2.cpp"
 #include "libraries/LedControl/src/LedControl.h"
+#include "libraries/LedControl/src/LedControl.cpp"
 
 #define TESTING 1 // if true, certain things for bench testing
                   // will be turned on
@@ -22,6 +24,12 @@ volatile byte curPort = PIND; // current axis port state
 bool units = true; // display units in mm (false = inches)
 
 LedControl leds = LedControl(PIN_LED_DATA, PIN_LED_CLK, PIN_LED_CS);
+Bounce bz_reset = new Bounce();
+Bounce bx_reset = new Bounce();
+Bounce bw_reset = new Bounce();
+Bounce bc_reset = new Bounce();
+Bounce bunits   = new Bounce();
+
 int buttons[BUTTON_COUNT] = { PIN_Z_RESET, PIN_X_RESET, PIN_W_RESET, PIN_C_RESET, PIN_UNITS };
 boolean button_state[BUTTON_COUNT];
 boolean last_button_readings[BUTTON_COUNT];
@@ -72,10 +80,23 @@ void setup()
     leds.clearDisplay(0);
   }
 
-  for( int i=0; i<=BUTTON_COUNT-1; i++)
-  {
-    pinMode(buttons[i], INPUT_PULLUP);
-  }
+  pinMode(PIN_Z_RESET, INPUT_PULLUP);
+  pinMode(PIN_X_RESET, INPUT_PULLUP);
+  pinMode(PIN_W_RESET, INPUT_PULLUP);
+  pinMode(PIN_C_RESET, INPUT_PULLUP);
+  pinMode(PIN_UNITS  , INPUT_PULLUP);
+
+  bz_reset.attach(PIN_Z_RESET);
+  bx_reset.attach(PIN_X_RESET);
+  bw_reset.attach(PIN_W_RESET);
+  bc_reset.attach(PIN_C_RESET);
+  bunits.attach(PIN_UNITS);
+
+  bz_reset.interval(DEBOUNCE);
+  bx_reset.interval(DEBOUNCE);
+  bw_reset.interval(DEBOUNCE);
+  bc_reset.interval(DEBOUNCE);
+  bunits.interval(DEBOUNCE);
 
   prevPort = PIND;
 }
@@ -93,12 +114,17 @@ void loop()
     writeDisplay(0, &count_z, TICK_Z_MM);
   }
 
-  // TODO: debounce me
-  if(!digitalRead(PIN_Z_RESET)) count_z = 0;
-  if(!digitalRead(PIN_X_RESET)) count_x = 0;
-  if(!digitalRead(PIN_W_RESET)) count_w = 0;
-  if(!digitalRead(PIN_C_RESET)) count_c = 0;
-  if(!digitalRead(PIN_UNITS)) units = !units; // FIXME: I don't work
+  bz_reset.update();
+  bx_reset.update();
+  bw_reset.update();
+  bc_reset.update();
+  bunits.update();
+
+  if(bz_reset.read() == LOW) count_z = 0;
+  if(bx_reset.read() == LOW) count_x = 0;
+  if(bw_reset.read() == LOW) count_w = 0;
+  if(bc_reset.read() == LOW) count_c = 0;
+  if(bunits.read() == LOW) units = !units;
 }
 
 void writeDisplay(uint8_t display, volatile long int* count, double ticks)
