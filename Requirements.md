@@ -1,9 +1,9 @@
 # Project Requirements
 - [ ] Must display following axes
-  - X
-  - Y
-  - Z
-  - W (tailstock / knee)
+  - [x] X
+  - [x] Y
+  - [x] Z
+  - [x] W (tailstock / knee)
   - Spindle position / Tachometer / Surface speed
 - [ ] Lathe mode
 - [ ] Mill mode
@@ -16,7 +16,7 @@
 - [ ] Toggle angular units between degrees, radians, grads
 - [ ] Incremental distance counts
 - [ ] Absolute distance counts
-- [ ] Zero all axes
+- [x] Zero all axes
 - [ ] Trig calculators:
   - [ ] sin, asin
   - [ ] cos, acos
