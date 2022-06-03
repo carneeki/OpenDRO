@@ -71,7 +71,7 @@ Assuming a drill in a taper in tailstock as tool `21`:
 
 A single tool may have multiple cutting edges, for example a square 45 degree turning tool used for chamfers has two edges that might be used, one for chamfers towards the chuck and one for chamfers towards the tailstock. Here, using the tool corner for the offset may prove useful.
 
-A single tool may also have 3 cutting edges, such as a specific grind on HSS for OD chamfers towards chuck, tailstock and ID chamfers for holes (the 'Tom Lipton grind'). For this, setting one corner (the 'top corner' as one tool and the chuck facing corner as a separate tool may be preferable. This will require multiple labels on the tool holder.
+A single tool may also have multiple cutting edges (such as [Tom Lipton's OD turning, OD chamfer, OD back chamfer and internal chamfer, and 90 degree grooving tool](https://www.youtube.com/watch?v=uzPIUsMtUEM&t=18m)). For such a tool, using two separate corners as two separate tools in the library (and two labels on the tool holder) is desirable, especially if the numbers are one after the other.
 
 ### Radius cutting mode
 
