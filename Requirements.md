@@ -27,11 +27,6 @@
 - [ ] Show tacho in RPM or surface speed (m/min, SFM)
 - [ ] Measure taper
 - [ ] Radius cutting mode:
-  1. Set fillet dimensions, either start+end+centre offsets (like G2 XY IJK) or end point and radius (G2 XY R)
-  2. Set number of cuts
-  3. Move to first cut, crank X axis to zero, and feed Z axis until zero
-  4. back out, index next cut
-  5. repeat steps 3-4 until complete
 - [ ] Ball turning (maybe this is an expansion of IJK mode?)
 
 
@@ -42,10 +37,25 @@
 - [ ] Per-axis centre finding (1/2 button)
 - [ ] Measure taper
 - [ ] Hole pattern calculator (PCD)
+
+## Functions for Surface Grinder Mode
+¯\_(ツ)_/¯
+
+## Detailed Lathe Functions
+
+### Radius cutting mode
+
+  1. Set fillet dimensions, either start+end+centre offsets (like G2 XY IJK) or end point and radius (G2 XY R)
+  2. Set number of cuts
+  3. Move to first cut, crank X axis to zero, and feed Z axis until zero
+  4. back out, index next cut
+  5. repeat steps 3-4 until complete
+
+## Detailed Mill Functions
+
+### Hole pattern calculator (PCD)
+
   1. Set centre XYZ
   2. Set diameter of PCD
   3. Set hole count
   4. Set starting XYZ or starting angle
-
-## Functions for Surface Grinder Mode
-¯\_(ツ)_/¯
