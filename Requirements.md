@@ -41,7 +41,11 @@
   - [ ] Set edge finder / probe diameter
 - [ ] Per-axis centre finding (1/2 button)
 - [ ] Measure taper
-- [ ] Hole pattern calculator
+- [ ] Hole pattern calculator (PCD)
+  1. Set centre XYZ
+  2. Set diameter of PCD
+  3. Set hole count
+  4. Set starting XYZ or starting angle
 
 ## Functions for Surface Grinder Mode
 ¯\_(ツ)_/¯
